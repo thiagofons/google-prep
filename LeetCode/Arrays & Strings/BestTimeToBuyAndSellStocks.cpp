@@ -1,7 +1,6 @@
 #include <iostream>
 #include <vector>
 
-
 using namespace std;
 
 class Solution {
@@ -11,12 +10,14 @@ public:
 		int profit = 0;
 
 		for (int i = 1; i < prices.size(); i++) {
+			// Get the lowest price
 			int price = prices[i];
 			
 			if (price < buy_price) {
 				buy_price = price;
 			}
-
+			
+			// Check if the profit gets higher
 			profit = max(profit, price - buy_price);
 		}
 
