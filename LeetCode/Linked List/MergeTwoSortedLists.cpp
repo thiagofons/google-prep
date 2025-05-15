@@ -14,25 +14,29 @@ struct ListNode {
 
 class Solution {
 public:
-  ListNode *mergeTwoListsAux(ListNode *list1, ListNode *list2, ListNode *newList) {
-    if (!list1) return list1;
-    if (!list2) return list2;
-
-    if (list1->val < list2->val) {
-      newList->next = mergeTwoListsAux(list1->next, list2, newList->next);
-    } else {
-      newList->next = mergeTwoListsAux(list1, list2->next, newList->next);
-    }
-    
-    return nullptr;
-  }
-
   ListNode *mergeTwoLists(ListNode *list1, ListNode *list2) {
-    ListNode *newList;
+    ListNode *dummy = new ListNode();
+    ListNode *current = dummy;
 
-    mergeTwoListsAux(list1, list2, newList);
+    while (list1 && list2) {
+      if (list1->val > list2->val) {
+        current->next = list2;
+        list2 = list2->next;
+      } else {
+        current->next = list1;
+        list1 = list1->next;
+      }
 
-    return newList;
+      current = current->next;
+    }
+
+    if (list1) {
+      current->next = list1;
+    } else {
+      current->next = list2;
+    }
+
+    return dummy->next;
   }
 };
 
