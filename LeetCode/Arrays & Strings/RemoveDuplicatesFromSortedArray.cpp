@@ -6,14 +6,19 @@ using namespace std;
 
 class Solution {
 public:
-    int removeDuplicates(vector<int>& nums) {
-        set<int> num_set;
+    int removeDuplicates(vector<int>& nums) {	
+			set<int> s;
 
-		for (int i = 0; i < nums.size(); i++) {
-			num_set.insert(nums[i]);
-		}
+			for (int i = 0; i < nums.size(); i++) {
+				s.insert(nums[i]);
+			}
 
-		return num_set.size();
+			int idx = 0;
+			for (int num : s) {
+				nums[idx++] = num;
+			}
+
+			return s.size();
     }
 };
 
